@@ -21,7 +21,7 @@ Olistly Frontend - Encurtador de URL
 
 # Execução Do Projeto
 
-1. Para iniciar as configurações criei um arquivo **.env.local**, **.env.production**, **.env.qualquernome** na raiz do projeto com as configurações:
+1. Para iniciar as configurações crie um arquivo **.env.local**, **.env.production**, **.env.qualquernome** na raiz do projeto com as configurações:
    * .env.local
    
     ```
