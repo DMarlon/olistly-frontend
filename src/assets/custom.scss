@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:200,300,400,700");
+$font-family-base: Muli;
+
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+$headings-font-family: Abel;
+
+$primary: #2d70ff;
+$secondary: #3e4d59;
+$success: #659f13;
+$danger: #d85030;
+$info: #2d7091;
+$warning: #e28327;
+$light: #eceeec;
+$dark: #111;
+
+html { font-size: .8rem; }
+
+$enable-rounded: false;
+// $border-radius: 0;
+// $border-radius-lg: 0;
+// $border-radius-sm: 0;
+
+// $enable-shadows: true;
+// $enable-gradients: false;
+// $enable-grid-classes: true;
+// $enable-print-styles: true;
+// $spacer: 1rem;
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px
+// );
+// @include media-breakpoint-up(sm) { html { font-size: .7rem; }}
+// @include media-breakpoint-up(md) { html { font-size: .7rem; }}
+// @include media-breakpoint-up(lg) { html { font-size: .8rem; }}
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-vue/src/index.scss";
