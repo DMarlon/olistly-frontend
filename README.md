@@ -26,7 +26,7 @@ Olistly Frontend - Encurtador de URL
 ## Feito Com:
 [![UBUNTU](https://img.shields.io/badge/Ubuntu-e95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/download)
 [![VUEJS](https://img.shields.io/badge/Vue%20Js-3fb27f?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
-[![VSCODE](https://img.shields.io/badge/VS%20Code-00a6ec?style=for-the-badge&logo=visual studio code&logoColor=white)](https://code.visualstudio.com/)
+[![VSCODE](https://img.shields.io/badge/VS%20Code-00a6ec?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
 
 ## 🔖 Licensa
 [![LICENSA](https://img.shields.io/badge/Custom_GPL_3.0-E58080?style=for-the-badge&logo=bookstack&logoColor=white)](/LICENSE)
