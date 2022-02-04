@@ -1,10 +1,7 @@
+import jwt from "@/utilitaries/jwt";
 const COOKIE_OAUTH = "olistly-auth";
 
 export default {
-    getCookie(name) {
-        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        return match ? match[2] : "";
-    },
     setCookie(name, value, path, expires) {
         path = path ?? "/";
 
@@ -15,12 +12,16 @@ export default {
 
         document.cookie = name + "=" + value + "; Path=" + path + "; Expires=" + expires + "; SameSite=None; Secure";
     },
+    getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : "";
+    },
     deleteCookie(name) {
         const expires = new Date(0);
         document.cookie = name + "=; Path=/; Expires=" + expires + "; SameSite=None; Secure";
     },
     setJWTCookie(token) {
-        const claim = JSON.parse(Buffer.from(token.split(".")[1], "base64"));
+        const claim = jwt.getPayload(token);
         var expires = new Date();
         expires.setTime(claim.exp * 1000);
         
@@ -28,5 +29,8 @@ export default {
     },
     getJWTCookie() {
         return this.getCookie(COOKIE_OAUTH);
+    },
+    removeJWTCookie() {
+        return this.deleteCookie(COOKIE_OAUTH);
     }
 };

@@ -5,8 +5,13 @@ const pathapi = {
         login: () => "/login",
         logout: () => "/logout",
         create: () => "/public/user/create",
+        activate: (hash) => "public/user/activate/" + (hash ?? ""),
         user: {
             me: () => "/user/info",
+            session: {
+                all: () => "/user/session",
+                delete: (id) => "/user/session/" + (id ?? ""),
+            }
         }
     },
     url: {

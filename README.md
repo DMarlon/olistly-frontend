@@ -21,7 +21,17 @@ Olistly Frontend - Encurtador de URL
 
 # Execução Do Projeto
 
-- need write yet
+1. Para iniciar as configurações criei um arquivo **.env.local**, **.env.production**, **.env.qualquernome** na raiz do projeto com as configurações:
+   * .env.local
+   
+    ```
+	VUE_APP_FRONT_URL=http://localhost:8081
+	VUE_APP_API_URL=http://localhost:8800
+    ```
+    
+2. Para rodar localmente basta executar o script [run-local.sh](run-local.sh)
+3. Para buildar o projeto basta executar o script [build.sh](build.sh)
+   
 
 ## Feito Com:
 [![UBUNTU](https://img.shields.io/badge/Ubuntu-e95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/download)

@@ -1,7 +1,10 @@
 <template>
 	<b-container fluid>
 		<Options title="Meus links" :searchOptions="searchOptions" :searchResult="searchResult" @onLoad="load" @onPaginate="goToPage" class="mb-4" />
-		<b-table class="p-2" striped hover :fields="fields" :items="items" @row-dblclicked="showDetail">
+		<b-table class="p-2" striped hover :fields="fields" :items="items" @row-dblclicked="showDetail" sort-icon-left no-local-sorting :sort-by="searchOptions.order" :sort-desc="searchOptions.direction == 'desc'" @sort-changed="changeOrder">
+			<template v-slot:cell(shortened)="data">
+                <a class="pointer" :href="data.item.shortened">{{ data.item.shortened }}</a>
+            </template>
 			<template v-slot:cell(status)="data">
                 <span class="pointer" :title="data.item.status ? 'Inativar' : 'Ativar'"><b-icon :icon="data.item.status ? 'check-circle' : 'circle'" @click="changeStatus(data.item)" /></span>
             </template>
@@ -24,8 +27,8 @@ export default {
 			searchOptions: {
                 page: 1,
                 limit: 20,
-                order: "id",
-                direction: "asc",
+                order: "dateCreated",
+                direction: "desc",
                 status: this.$status.enable,
                 term: ""
             },
@@ -33,7 +36,14 @@ export default {
                 totalRecords: 0,
                 totalPages: 0
             },
-			fields: [{ key:'id', label:'Id' }, { key:'original', label:"Original" }, { key:'shortened', label:"Encurtada" }, { key:'created', label:"Criado" }, { key:'views', label:"Visualizações" }, { key:'status', label:"Ativo" }],
+			fields: [
+				{ key:'id', label:'Id', sortable: true }, 
+				{ key:'original', label:"Original", sortable: true, class: "text-break" }, 
+				{ key:'shortened', label:"Encurtada", sortable: true }, 
+				{ key:'created', label:"Criação", sortable: true }, 
+				{ key:'views', label:"Visualizações", sortable: true }, 
+				{ key:'status', label:"Ativo" }
+			],
 			items: []
 		}
 	},
@@ -49,7 +59,8 @@ export default {
 					this.searchOptions.page = 1;
 				}				
 			} catch (error) {
-				console.log(error)
+				console.log(error.response ?? error)
+				alert("Erro ao carregar os seus links!")
 			}
 		},
 		handlerContent(data){
@@ -77,6 +88,13 @@ export default {
 				status: this.$status.enable == item.status
 			}
 		},
+		changeOrder(order) {
+            if (order.sortBy != "") {
+                this.searchOptions.order = order.sortBy;
+                this.searchOptions.direction = order.sortDesc ? "desc" : "asc";
+                this.load();
+            }
+        },
 		showDetail(item) {
 			this.$router.push({ name: 'detail', params: { urlId: item.id } });
 		},
@@ -89,7 +107,8 @@ export default {
 				}
             }
             catch (error) {
-                console.log(error.response)                
+                console.log(error.response ?? error)                
+				alert(`Erro ao ${item.status ? 'inativar' : 'ativar'} link!`)
             }
         },
 		goToPage(page) {

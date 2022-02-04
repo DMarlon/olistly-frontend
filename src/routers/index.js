@@ -5,6 +5,8 @@ import Login from '../views/Login.vue'
 import Links from '../views/Links.vue'
 import Detail from '../views/Detail.vue'
 import Shortened from '../views/Shortened.vue'
+import ConfirmUser from '../views/ConfirmUser.vue'
+import Session from '../views/Session.vue'
 import cookies from "@/utilitaries/cookies"
 
 Vue.use(VueRouter)
@@ -19,7 +21,7 @@ const routes = [
 		},
 	},
 	{
-		name: 'about',
+		name: 'links',
 		path: '/links',    
 		component: Links,
 		meta: {
@@ -30,6 +32,22 @@ const routes = [
 		name: 'login',
 		path: '/login',    
 		component: Login,
+		meta: {
+			auth: false
+		}
+	},
+	{
+		name: "confirmUser",
+		path: "/ativar/:userHash([A-F0-9]{40})",
+		component: ConfirmUser,
+		meta: {
+			auth: false
+		}
+	},
+	{
+		name: "sessions",
+		path: "/sessoes",
+		component: Session,
 		meta: {
 			auth: false
 		}

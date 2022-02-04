@@ -11,6 +11,7 @@
                     <template #button-content>
                         <em>{{ user.name }}</em>
                     </template>
+                    <b-dropdown-item to="/sessoes">Sessões</b-dropdown-item>
                     <b-dropdown-item @click="logout">Sair</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>

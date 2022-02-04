@@ -29,7 +29,12 @@ export default {
                 totalRecords: 0,
                 totalPages: 0
             },
-			fields: [{ key:'id', label:'Id' }, { key:'device', label:"Dispositivo" }, { key:'address', label:"Endereço" }, { key:'access', label:"Acesso" }],
+			fields: [
+				{ key:'id', label:'Id' }, 
+				{ key:'device', label:"Dispositivo" }, 
+				{ key:'address', label:"Endereço" }, 
+				{ key:'access', label:"Acesso" }
+			],
 			items: []
 		}
 	},
@@ -50,7 +55,8 @@ export default {
 					this.searchOptions.page = 1;
 				}				
 			} catch (error) {
-				console.log(error)
+				console.log(error.response ?? error)
+				alert("Erro ao carregar os detalhes de acesso!")
 			}
 		},
 		handlerContent(data){

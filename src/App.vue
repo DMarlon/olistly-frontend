@@ -1,16 +1,12 @@
 <template>
-  <div id="app" v-if="logged">
-    <NavBar />
-    <router-view/>
-  </div>
-  <div v-else>
-    <Login />
-  </div>
+	<div id="app">
+		<NavBar v-if="logged"/>
+		<router-view/>
+	</div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";  
-import Login from "@/views/Login";  
 
 import jwt from "@/utilitaries/jwt";
 import cookies from "@/utilitaries/cookies";
@@ -18,20 +14,17 @@ import httprequester from "@/utilitaries/httprequester";
 
 export default {
 	name: "App",
-	components: { NavBar, Login },
+	components: { NavBar },
 	created() {
 		this.verifySessionToken();
 	},
 	computed: {
 		logged() {
-			const logged = this.$store.getters["session/getUser"] != null;
-			console.log(logged)
-			return logged;
+			return this.$store.getters["session/getUser"] != null;
 		}
 	},
 	methods: {
 		async verifySessionToken() {
-			console.log("aqui", "passou App.vue")
 			const token = cookies.getJWTCookie();
 			if (token) {
 				const payload = jwt.getPayload(token);
@@ -39,10 +32,9 @@ export default {
 
 				try {
 					const user = await this.$http.authenticated().get(this.$pathapi.auth.user.me());
-					console.log(user.data)
 					this.$store.dispatch("session/setUser", user.data ?? null);
 				} catch (error) {
-					console.log(error)
+					console.log(error.response ?? error)
 					httprequester.removeToken(this.$http);
 					this.$router.push({ name: "login" });
 				}

@@ -36,7 +36,8 @@ export default {
 				}
 					
 			} catch (error) {
-				console.log(error)
+				console.log(error.response ?? error)
+				alert("Erro ao gerar URL reduzida!");
 			}
 		},
 		reset() {

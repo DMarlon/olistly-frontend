@@ -16,7 +16,7 @@ const axiosUnauthenticated = axios.create({
     timeout: 60 * 1000,
 });
 
-const a = {
+const requester = {
     get() {
         return {
             authenticated () {
@@ -32,7 +32,7 @@ const a = {
 Vue.use({
     install(Vue) {
         Object.defineProperties(Vue.prototype, {
-            $http: a
+            $http: requester
         });
     }
 });
